@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: my-decks_production
+  database: my_decks_production
   username: root
   password:
