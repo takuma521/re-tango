@@ -51,4 +51,4 @@ production:
   <<: *default
   database: my_decks_production
   username: root
-  password:
+  password: <%= Rails.application.credentials.production[:mysql][:password] %>
