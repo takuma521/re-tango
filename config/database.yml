@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: my_decks_production
-  username: my_decks
-  password: <%= ENV['MY_DECKS_DATABASE_PASSWORD'] %>
+  database: my-decks_production
+  username: root
+  password:
