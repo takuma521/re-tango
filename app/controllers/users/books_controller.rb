@@ -6,7 +6,7 @@ class Users::BooksController < ApplicationController
 
   private
 
-  def set_words
+  def set_books
     @books = current_user.books.all
   end
 end
