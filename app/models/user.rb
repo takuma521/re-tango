@@ -2,6 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable,:rememberable, :trackable, :validatable, :omniauthable
 
   has_many :social_profiles, dependent: :destroy
+  has_many :books, dependent: :destroy
   def social_profile(provider)
     social_profiles.select{ |sp| sp.provider == provider.to_s }.first
   end
