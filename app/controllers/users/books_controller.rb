@@ -4,6 +4,12 @@ class Users::BooksController < ApplicationController
   def index
   end
 
+  def create
+    book = current_user.books.new(name: params[:name])
+    book.save!
+    redirect_to user_books_path(current_user)
+  end
+
   private
 
   def set_books

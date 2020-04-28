@@ -3,4 +3,8 @@
 <% @books.each do |book| %>
   <%= link_to book.name, user_book_words_path(current_user.uid, book) %>
 <% end %>
+<%= form_with(url: user_books_path, local: true) do |form| %>
+  <%= form.text_field :name %>
+  <%= form.submit %>
+<% end %>
 <%= link_to 'logout', destroy_user_session_path, method: :delete %>
