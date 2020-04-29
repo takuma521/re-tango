@@ -1,0 +1,10 @@
+h1
+  | Books#index
+p
+  = "こんにちは、#{current_user.name}さん"
+- @books.each do |book|
+  = link_to book.name, user_book_words_path(current_user.uid, book)
+= form_with(url: user_books_path, local: true) do |form|
+  = form.submit value: '＋'
+  = form.text_field :name
+= link_to 'logout', destroy_user_session_path, method: :delete

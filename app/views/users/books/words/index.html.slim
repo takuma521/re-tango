@@ -1,0 +1,16 @@
+h1
+  | Users::Books::Words#index
+p
+  = "こんにちは、#{current_user.name}さん"
+- @words.each do |words|
+  p
+    = words.name
+    = words.translation
+= form_with(url: user_book_words_path, local: true) do |form|
+  = form.submit value: '＋'
+  = form.label '英'
+  = form.text_field :name
+  = form.label '訳'
+  = form.text_field :translation
+= link_to '単語帳一覧へ', user_books_path
+= link_to 'logout', destroy_user_session_path, method: :delete
