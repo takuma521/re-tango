@@ -2,9 +2,23 @@ h1
   | Books#index
 p
   = "こんにちは、#{current_user.name}さん"
-- @books.each do |book|
-  = link_to book.name, user_book_words_path(current_user.uid, book)
 = form_with(url: user_books_path, local: true) do |form|
   = form.submit value: '＋'
   = form.text_field :name
+
+table
+  thead
+    tr
+      th aaaa
+      th 名前
+      th 登録数
+      th 上限数
+  tbody
+    - @books.each do |book|
+      tr
+        td
+          / TODO: 編集のボタン追加
+        td= link_to book.name, user_book_words_path(current_user.uid, book)
+        td= book.words.count
+        td 200
 = link_to 'logout', destroy_user_session_path, method: :delete
