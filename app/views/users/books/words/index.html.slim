@@ -13,8 +13,8 @@ p
     tbody
       tr
         td= form.submit value: '＋'
-        td= form.text_field :name, id: :english
-        td= form.text_field :translation, id: :japanese
+        td= form.text_field :name, id: :english, required: true
+        td= form.text_field :translation, id: :japanese, required: true
 table
   thead
     tr
