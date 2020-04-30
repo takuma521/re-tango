@@ -24,12 +24,12 @@ table
       th 正解数
       th 出題数
   tbody
-    - @words.each do |words|
+    - @words.each do |word|
       tr
-        td
+        td= link_to '-', user_book_word_path(current_user.uid, word.book_id, word), method: :delete
           / TODO: 編集できるようにする
-        td= words.name
-        td= words.translation
+        td= word.name
+        td= word.translation
         td
         / TODO: 正解数を表示する
         td
