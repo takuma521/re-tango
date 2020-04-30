@@ -21,4 +21,5 @@ table
         td= link_to book.name, user_book_words_path(current_user.uid, book)
         td= book.words.count
         td 200
+        / TODO: 上限数を設ける
 = link_to 'logout', destroy_user_session_path, method: :delete

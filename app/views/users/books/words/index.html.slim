@@ -2,15 +2,37 @@ h1
   | Users::Books::Words#index
 p
   = "こんにちは、#{current_user.name}さん"
-- @words.each do |words|
-  p
-    = words.name
-    = words.translation
 = form_with(url: user_book_words_path, local: true) do |form|
-  = form.submit value: '＋'
-  = form.label '英'
-  = form.text_field :name
-  = form.label '訳'
-  = form.text_field :translation
+  table
+    thead
+      tr
+        td
+        td= form.label '単語', for: :english
+        td= form.label '意味', for: :japanese
+        td
+    tbody
+      tr
+        td= form.submit value: '＋'
+        td= form.text_field :name, id: :english
+        td= form.text_field :translation, id: :japanese
+table
+  thead
+    tr
+      th
+      th 単語
+      th 意味
+      th 正解数
+      th 出題数
+  tbody
+    - @words.each do |words|
+      tr
+        td
+          / TODO: 編集できるようにする
+        td= words.name
+        td= words.translation
+        td
+        / TODO: 正解数を表示する
+        td
+        / TODO: 出題数を表示する
 = link_to '単語帳一覧へ', user_books_path
 = link_to 'logout', destroy_user_session_path, method: :delete
