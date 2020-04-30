@@ -1,12 +1,30 @@
 class Users::BooksController < ApplicationController
-  before_action :set_books, only: %w(index)
+  before_action :set_book, only: %w(destroy)
 
   def index
+    @books = current_user.books
+  end
+
+  def create
+    book = current_user.books.new(name: params[:name])
+    if book.save
+      redirect_to user_books_path
+    else
+      redirect_to user_books_path, status: 422
+    end
+  end
+
+  def destroy
+    if @book.destroy
+      redirect_to user_books_path
+    else
+      redirect_to user_books_path, status: 422
+    end
   end
 
   private
 
-  def set_books
-    @books = current_user.books.all
+  def set_book
+    @book = Book.find(params[:id])
   end
 end
