@@ -1,7 +1,6 @@
 h1
   | Users::Books::Words#index
-p
-  = "こんにちは、#{current_user.name}さん"
+
 = form_with(url: user_book_words_path, local: true) do |form|
   table
     thead

@@ -1,6 +1,7 @@
 class Users::Books::WordsController < ApplicationController
   before_action :set_book, only: %w(index create destroy)
   before_action :set_word, only: %w(destroy)
+  before_action :authenticate_user!
 
   def index
     @words = @book.words

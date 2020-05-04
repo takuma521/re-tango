@@ -1,5 +1,6 @@
 class Users::BooksController < ApplicationController
   before_action :set_book, only: %w(destroy)
+  before_action :authenticate_user!
 
   def index
     @books = current_user.books

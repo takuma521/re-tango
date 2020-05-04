@@ -1,7 +1,6 @@
 h1
   | Books#index
-p
-  = "こんにちは、#{current_user.name}さん"
+
 = form_with(url: user_books_path, local: true) do |form|
   = form.submit value: '＋'
   = form.text_field :name, required: true
