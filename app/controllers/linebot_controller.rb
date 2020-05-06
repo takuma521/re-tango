@@ -45,7 +45,15 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], menu(user))
           word_name = data.slice(/wordName=.+&/).gsub(/wordName=/, '').gsub(/&/, '')
           word = user.books.first.words.find_by(name: word_name)
-          # TODO: 正解、間違いの場合にDBを更新して成績をつけるようにする。
+          # TODO: transaction rescue
+          is_correct = data.slice(/isCorrect=.+/).gsub(/isCorrect=/, '')
+          ActiveRecord::Base.transaction do
+            word.question_count += 1
+            if is_correct == 'true'
+              word.correct_answer_count += 1
+            end
+            word.save!
+          end
         end
       end
     }
@@ -71,7 +79,7 @@ class LinebotController < ApplicationController
             "type": "uri",
             "label": "単語の登録",
             # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://2eca44f8.ngrok.io/users/#{user.uid}/books/#{user.books.first.id}/words"
+            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/books/#{user.books.first.id}/words"
           }
         ]
       }

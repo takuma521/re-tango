@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 2020_04_26_111753) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "provider"
-    t.string "uid"
-    t.string "name"
+    t.string "provider", default: "", null: false
+    t.string "uid", default: "", null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(version: 2020_04_26_111753) do
 
   create_table "words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "book_id", null: false
-    t.string "name"
-    t.string "translation"
+    t.integer "correct_answer_count", default: 0, null: false
+    t.integer "question_count", default: 0, null: false
+    t.string "name", default: "", null: false
+    t.string "translation", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_words_on_book_id"

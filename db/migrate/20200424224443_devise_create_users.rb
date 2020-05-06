@@ -33,9 +33,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       ## Line
-      t.string :provider
-      t.string :uid
-      t.string :name
+      t.string :provider, null: false, default: ''
+      t.string :uid, null: false, default: ''
+      t.string :name, null: false, default: ''
 
       t.timestamps null: false
     end
