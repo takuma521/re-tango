@@ -1,6 +1,6 @@
 h1 単語帳
 
-= form_with(url: user_book_words_path, local: true) do |form|
+= form_with(url: user_words_path, local: true) do |form|
   table
     thead
       tr
@@ -24,11 +24,10 @@ table
   tbody
     - @words.each do |word|
       tr
-        td= link_to '-', user_book_word_path(current_user.uid, word.book_id, word), method: :delete
+        td= link_to '-', user_word_path(current_user.uid, word), method: :delete
           / TODO: 編集できるようにする
         td= word.name
         td= word.translation
         td= word.correct_answer_count
         td= word.question_count
-= link_to '単語帳一覧へ', user_books_path
 = link_to 'logout', destroy_user_session_path, method: :delete

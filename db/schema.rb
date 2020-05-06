@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_04_26_111753) do
 
-  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_books_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -41,16 +33,15 @@ ActiveRecord::Schema.define(version: 2020_04_26_111753) do
   end
 
   create_table "words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
     t.integer "correct_answer_count", default: 0, null: false
     t.integer "question_count", default: 0, null: false
     t.string "name", default: "", null: false
     t.string "translation", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_words_on_book_id"
+    t.index ["user_id"], name: "index_words_on_user_id"
   end
 
-  add_foreign_key "books", "users"
-  add_foreign_key "words", "books"
+  add_foreign_key "words", "users"
 end

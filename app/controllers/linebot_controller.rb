@@ -33,18 +33,16 @@ class LinebotController < ApplicationController
         phase = data.gsub(/phase=/, '').gsub(/&.+/, '')
         case phase
         when 'menu'
-          # TODO: どのbookから選ぶかをユーザーが事前に設定できるようにする。
-          # 設定されていなければ、ランダムで選ぶ
-          word = user.books.first.words.shuffle.first
+          word = user.words.shuffle.first
           client.reply_message(event['replyToken'], question(word))
         when 'question'
           word_name = data.slice(/wordName=.+/).gsub(/wordName=/, '')
-          word = user.books.first.words.find_by(name: word_name)
+          word = user.words.find_by(name: word_name)
           client.reply_message(event['replyToken'], confirm(word))
         when 'confirm'
           client.reply_message(event['replyToken'], menu(user))
           word_name = data.slice(/wordName=.+&/).gsub(/wordName=/, '').gsub(/&/, '')
-          word = user.books.first.words.find_by(name: word_name)
+          word = user.words.find_by(name: word_name)
           # TODO: transaction rescue
           is_correct = data.slice(/isCorrect=.+/).gsub(/isCorrect=/, '')
           ActiveRecord::Base.transaction do
@@ -79,7 +77,7 @@ class LinebotController < ApplicationController
             "type": "uri",
             "label": "単語の登録",
             # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/books/#{user.books.first.id}/words"
+            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/words"
           }
         ]
       }
