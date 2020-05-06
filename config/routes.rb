@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users, only: %w(show), param: :uid do
-    resources :books, only: %w(index create update destroy), module: :users do
-      resources :words, only: %w(index create update destroy), module: :books
-    end
+    resources :words, only: %w(index create update destroy), module: :users
   end
 
   devise_for :users, controllers: {
