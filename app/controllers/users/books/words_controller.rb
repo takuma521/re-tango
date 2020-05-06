@@ -9,7 +9,7 @@ class Users::Books::WordsController < ApplicationController
 
   def create
     word = @book.words.new(name: params[:name], translation: params[:translation])
-    if word.save!
+    if word.save
       redirect_to user_book_words_path
     else
       redirect_to user_book_words_path, status: 422
