@@ -33,13 +33,17 @@ class LinebotController < ApplicationController
         phase = query.gsub(/phase=/, '').gsub(/&.+/, '')
         case phase
         when 'menu'
+          # TODO: どのbookから選ぶかをユーザーが事前に設定できるようにする。
+          # 設定されていなければ、ランダムで選ぶ
           word = user.books.first.words.shuffle.first
           client.reply_message(event['replyToken'], question(word))
         when 'question'
           word_name = query.slice(/wordName=.+/)
           word_name = word_name.gsub(/wordName=/, '')
+          # TODO: wordをランダムに選ぶ処理が重複してるのでメソッドに切り出す。
           word = user.books.first.words.find_by(name: word_name)
           client.reply_message(event['replyToken'], confirm(word))
+          # TODO: 正解、間違いの場合にDBを更新して成績をつけるようにする。
         when 'confirm'
           client.reply_message(event['replyToken'], menu(user))
         end
@@ -108,6 +112,7 @@ class LinebotController < ApplicationController
           {
             "type": "uri",
             "label": "単語の登録",
+            # TODO: develop, prodction環境ごとのurlに対応する
             "uri": "https://2eca44f8.ngrok.io/users/#{user.uid}/books/#{user.books.first.id}/words"
           }
         ]
