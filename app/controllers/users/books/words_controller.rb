@@ -20,6 +20,7 @@ class Users::Books::WordsController < ApplicationController
     if @word.destroy
       redirect_to user_book_words_path
     else
+      # TODO: error message 表示
       redirect_to user_book_words_path, status: 422
     end
   end
