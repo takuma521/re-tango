@@ -1,6 +1,7 @@
 class Users::Books::WordsController < ApplicationController
   before_action :set_book, only: %w(index create destroy)
   before_action :set_word, only: %w(destroy)
+  before_action :authenticate_user!
 
   def index
     @words = @book.words
@@ -8,7 +9,7 @@ class Users::Books::WordsController < ApplicationController
 
   def create
     word = @book.words.new(name: params[:name], translation: params[:translation])
-    if word.save!
+    if word.save
       redirect_to user_book_words_path
     else
       redirect_to user_book_words_path, status: 422
@@ -19,6 +20,7 @@ class Users::Books::WordsController < ApplicationController
     if @word.destroy
       redirect_to user_book_words_path
     else
+      # TODO: error message 表示
       redirect_to user_book_words_path, status: 422
     end
   end

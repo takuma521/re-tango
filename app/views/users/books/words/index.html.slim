@@ -1,7 +1,5 @@
-h1
-  | Users::Books::Words#index
-p
-  = "こんにちは、#{current_user.name}さん"
+h1 単語帳
+
 = form_with(url: user_book_words_path, local: true) do |form|
   table
     thead
@@ -30,9 +28,7 @@ table
           / TODO: 編集できるようにする
         td= word.name
         td= word.translation
-        td
-        / TODO: 正解数を表示する
-        td
-        / TODO: 出題数を表示する
+        td= word.correct_answer_count
+        td= word.question_count
 = link_to '単語帳一覧へ', user_books_path
 = link_to 'logout', destroy_user_session_path, method: :delete

@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'devise/sessions#new'
   end
 
+  post '/callback' => 'linebot#callback'
+
 end

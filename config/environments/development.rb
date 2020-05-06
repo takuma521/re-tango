@@ -61,4 +61,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << /.*\.ngrok\.io/
+
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
 end
