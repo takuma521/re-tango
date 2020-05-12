@@ -22,6 +22,10 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       user = User.find_by(uid: event["source"]["userId"])
+      if user.words.empty?
+        client.reply_message(event['replyToken'], null_word_message(user))
+        break
+      end
       case event
       when Line::Bot::Event::Message
         case event.type
@@ -119,6 +123,30 @@ class LinebotController < ApplicationController
             "type": "postback",
             "label": "間違えた",
             "data": "phase=confirm&wordName=#{word.name}&isCorrect=false"
+          }
+        ]
+      }
+    }
+  end
+
+  def null_word_message(user)
+    {
+      "type": "template",
+      "altText": "this is a buttons template",
+      "template": {
+        "type": "buttons",
+        "text": "単語を登録してください",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "単語の登録",
+            # TODO: develop, prodction環境ごとのurlに対応する
+            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/words"
+          },
+          {
+            "type": "postback",
+            "label": "次の問題",
+            "data": "phase=menu"
           }
         ]
       }
