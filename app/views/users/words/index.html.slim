@@ -4,15 +4,15 @@ h1 単語帳
   table
     thead
       tr
+        td= form.label '単語(英)', for: :english
+        td= form.label '意味(日)', for: :japanese
         td
-        td= form.label '単語', for: :english
-        td= form.label '意味', for: :japanese
         td
     tbody
       tr
-        td= form.submit value: '＋'
         td= form.text_field :name, id: :english, required: true
         td= form.text_field :translation, id: :japanese, required: true
+        td= form.submit value: '＋'
 table
   thead
     tr
