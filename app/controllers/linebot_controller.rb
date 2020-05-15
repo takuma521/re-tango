@@ -81,7 +81,7 @@ class LinebotController < ApplicationController
             "type": "uri",
             "label": "単語の登録",
             # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/words"
+            "uri": "https://retango.tokyo/users/#{user.uid}/words"
           }
         ]
       }
@@ -141,7 +141,7 @@ class LinebotController < ApplicationController
             "type": "uri",
             "label": "単語の登録",
             # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://6ee66fd4.ngrok.io/users/#{user.uid}/words"
+            "uri": "https://retango.tokyo/users/#{user.uid}/words"
           },
           {
             "type": "postback",
