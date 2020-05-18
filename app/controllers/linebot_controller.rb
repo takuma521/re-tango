@@ -21,18 +21,23 @@ class LinebotController < ApplicationController
     events = client.parse_events_from(body)
 
     events.each { |event|
+      # TODO: リファクタリング
       user = User.find_by(uid: event["source"]["userId"])
+      client.reply_message(event['replyToken'], account_link_message) if user.nil?
       if user.words.empty?
         client.reply_message(event['replyToken'], null_word_message(user))
         break
       end
       case event
+      when Line::Bot::Event::Follow
+        client.reply_message(event['replyToken'], account_link_message)
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
           client.reply_message(event['replyToken'], menu(user))
         end
       when Line::Bot::Event::Postback
+        user = User.find_by(uid: event["source"]["userId"])
         data = event["postback"]["data"]
         phase = data.gsub(/phase=/, '').gsub(/&.+/, '')
         case phase
@@ -80,8 +85,7 @@ class LinebotController < ApplicationController
           {
             "type": "uri",
             "label": "単語の登録",
-            # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://retango.tokyo/users/#{user.uid}/words"
+            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           }
         ]
       }
@@ -140,13 +144,30 @@ class LinebotController < ApplicationController
           {
             "type": "uri",
             "label": "単語の登録",
-            # TODO: develop, prodction環境ごとのurlに対応する
-            "uri": "https://retango.tokyo/users/#{user.uid}/words"
+            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           },
           {
             "type": "postback",
             "label": "次の問題",
             "data": "phase=menu"
+          }
+        ]
+      }
+    }
+  end
+
+  def account_link_message
+    {
+      "type": "template",
+      "altText": "this is a buttons template",
+      "template": {
+        "type": "buttons",
+        "text": "アカウント連携",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "アカウントを連携する",
+            "uri": "https://#{Settings.domain}/users/auth/line"
           }
         ]
       }

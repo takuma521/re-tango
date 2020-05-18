@@ -1,14 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable,:rememberable, :trackable, :validatable, :omniauthable
 
-  has_many :social_profiles, dependent: :destroy
   has_many :words, dependent: :destroy
 
   validates :words, length: { maximum: 100 }
-
-  def social_profile(provider)
-    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
-  end
 
   def set_values(omniauth)
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
@@ -24,5 +19,17 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
+  def will_save_change_to_email?
+    false
   end
 end
