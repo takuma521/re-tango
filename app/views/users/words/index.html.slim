@@ -1,5 +1,11 @@
 h1 単語帳
 
+- if flash[:notice]
+  p= flash[:notice]
+
+- if @words.blank?
+  p= '単語を追加してください。'
+
 = form_with(url: user_words_path, local: true) do |form|
   table
     thead

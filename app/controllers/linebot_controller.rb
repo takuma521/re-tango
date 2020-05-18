@@ -12,44 +12,39 @@ class LinebotController < ApplicationController
 
   def callback
     body = request.body.read
-
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       head :bad_request
     end
-
     events = client.parse_events_from(body)
-
     events.each { |event|
-      # TODO: リファクタリング
       user = User.find_by(uid: event["source"]["userId"])
-      client.reply_message(event['replyToken'], account_link_message) if user.nil?
-      if user.words.empty?
+      if event.class == Line::Bot::Event::Unfollow
+        user.destroy if user
+        break
+      end
+      if user.blank?
+        client.reply_message(event['replyToken'], user_registration_message)
+        break
+      end
+      if user.words.blank?
         client.reply_message(event['replyToken'], null_word_message(user))
         break
       end
-      case event
-      when Line::Bot::Event::Follow
-        client.reply_message(event['replyToken'], account_link_message)
-      when Line::Bot::Event::Message
-        case event.type
-        when Line::Bot::Event::MessageType::Text
-          client.reply_message(event['replyToken'], menu(user))
-        end
-      when Line::Bot::Event::Postback
-        user = User.find_by(uid: event["source"]["userId"])
+      if event.class == Line::Bot::Event::Postback
         data = event["postback"]["data"]
         phase = data.gsub(/phase=/, '').gsub(/&.+/, '')
         case phase
         when 'menu'
           word = user.words.shuffle.first
           client.reply_message(event['replyToken'], question(word))
+          break
         when 'question'
           word_name = data.slice(/wordName=.+/).gsub(/wordName=/, '')
           word = user.words.find_by(name: word_name)
           client.reply_message(event['replyToken'], confirm(word))
+          break
         when 'confirm'
-          client.reply_message(event['replyToken'], menu(user))
           word_name = data.slice(/wordName=.+&/).gsub(/wordName=/, '').gsub(/&/, '')
           word = user.words.find_by(name: word_name)
           # TODO: transaction rescue
@@ -63,6 +58,7 @@ class LinebotController < ApplicationController
           end
         end
       end
+      client.reply_message(event['replyToken'], menu(user))
     }
     head :ok
   end
@@ -78,20 +74,21 @@ class LinebotController < ApplicationController
         "text": "メニュー",
         "actions": [
           {
-            "type": "postback",
-            "label": "次の問題",
-            "data": "phase=menu"
+            "type": "uri",
+            "label": "単語登録",
+            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           },
           {
-            "type": "uri",
-            "label": "単語の登録",
-            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
+            "type": "postback",
+            "label": "問題を出す",
+            "data": "phase=menu"
           }
         ]
       }
     }
   end
 
+  # メッセージ関連まとめる
   def question(word)
     {
       "type": "template",
@@ -143,12 +140,12 @@ class LinebotController < ApplicationController
         "actions": [
           {
             "type": "uri",
-            "label": "単語の登録",
+            "label": "単語登録",
             "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           },
           {
             "type": "postback",
-            "label": "次の問題",
+            "label": "問題を出す",
             "data": "phase=menu"
           }
         ]
@@ -156,18 +153,28 @@ class LinebotController < ApplicationController
     }
   end
 
-  def account_link_message
+  def user_registration_message
     {
       "type": "template",
       "altText": "this is a buttons template",
       "template": {
         "type": "buttons",
-        "text": "アカウント連携",
+        "text": "ユーザーを登録してください",
         "actions": [
           {
             "type": "uri",
-            "label": "アカウントを連携する",
+            "label": "ユーザー登録",
             "uri": "https://#{Settings.domain}/users/auth/line"
+          },
+          {
+            "type": "uri",
+            "label": "単語登録",
+            "uri": "https://#{Settings.domain}/users/auth/line"
+          },
+          {
+            "type": "postback",
+            "label": "問題を出す",
+            "data": "phase=menu"
           }
         ]
       }
