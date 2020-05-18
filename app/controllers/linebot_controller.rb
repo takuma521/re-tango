@@ -74,20 +74,21 @@ class LinebotController < ApplicationController
         "text": "メニュー",
         "actions": [
           {
-            "type": "postback",
-            "label": "次の問題",
-            "data": "phase=menu"
+            "type": "uri",
+            "label": "単語登録",
+            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           },
           {
-            "type": "uri",
-            "label": "単語の登録",
-            "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
+            "type": "postback",
+            "label": "問題を出す",
+            "data": "phase=menu"
           }
         ]
       }
     }
   end
 
+  # メッセージ関連まとめる
   def question(word)
     {
       "type": "template",
@@ -139,12 +140,12 @@ class LinebotController < ApplicationController
         "actions": [
           {
             "type": "uri",
-            "label": "単語の登録",
+            "label": "単語登録",
             "uri": "https://#{Settings.domain}/users/#{user.uid}/words"
           },
           {
             "type": "postback",
-            "label": "次の問題",
+            "label": "問題を出す",
             "data": "phase=menu"
           }
         ]
@@ -164,6 +165,16 @@ class LinebotController < ApplicationController
             "type": "uri",
             "label": "ユーザー登録",
             "uri": "https://#{Settings.domain}/users/auth/line"
+          },
+          {
+            "type": "uri",
+            "label": "単語登録",
+            "uri": "https://#{Settings.domain}/users/auth/line"
+          },
+          {
+            "type": "postback",
+            "label": "問題を出す",
+            "data": "phase=menu"
           }
         ]
       }
