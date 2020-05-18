@@ -24,7 +24,7 @@ class LinebotController < ApplicationController
         break
       end
       if user.blank?
-        client.reply_message(event['replyToken'], account_link_message)
+        client.reply_message(event['replyToken'], user_registration_message)
         break
       end
       if user.words.blank?
@@ -152,17 +152,17 @@ class LinebotController < ApplicationController
     }
   end
 
-  def account_link_message
+  def user_registration_message
     {
       "type": "template",
       "altText": "this is a buttons template",
       "template": {
         "type": "buttons",
-        "text": "アカウント連携",
+        "text": "ユーザーを登録してください",
         "actions": [
           {
             "type": "uri",
-            "label": "アカウントを連携する",
+            "label": "ユーザー登録",
             "uri": "https://#{Settings.domain}/users/auth/line"
           }
         ]
