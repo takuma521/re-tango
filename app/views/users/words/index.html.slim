@@ -6,7 +6,7 @@ h1 単語帳
 - if @words.blank?
   p= '単語を追加してください。'
 
-= form_with(url: user_words_path, local: true) do |form|
+= form_with url: user_words_path do |form|
   table
     thead
       tr
@@ -30,8 +30,7 @@ table
   tbody
     - @words.each do |word|
       tr
-        td= link_to '-', user_word_path(current_user.uid, word), method: :delete
-          / TODO: 編集できるようにする
+        td= link_to '-', user_word_path(current_user.uid, word), method: :delete, remote: true
         td= word.name
         td= word.translation
         td= word.correct_answer_count
