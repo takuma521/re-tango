@@ -8,7 +8,7 @@ class Translate
       q: context,
       target: 'ja',
       source: 'en',
-      key: Rails.application.credentials.google[:cloud_api_key]
+      key: Rails.application.credentials[Rails.env.to_sym][:google][:cloud_api_key]
     }
     url.query = URI.encode_www_form(params)
     res = Net::HTTP.get_response(url)
