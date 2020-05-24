@@ -1,39 +1,28 @@
-h1 単語帳
+= render 'layouts/sidenav'
 
-- if flash[:notice]
-  p= flash[:notice]
+section.p-words-section
+  .p-words-wrapper
 
-- if @words.blank?
-  p= '単語を追加してください。'
+    - if flash[:notice]
+      p= flash[:notice]
 
-= form_with(url: user_words_path, local: true) do |form|
-  table
-    thead
-      tr
-        td= form.label '単語(英)', for: :english
-        td= form.label '意味(日)', for: :japanese
-        td
-        td
-    tbody
-      tr
-        td= form.text_field :name, id: :english, required: true
-        td= form.text_field :translation, id: :japanese
-        td= form.submit value: '＋'
-table
-  thead
-    tr
-      th
-      th 単語
-      th 意味
-      th 正解数
-      th 出題数
-  tbody
-    - @words.each do |word|
-      tr
-        td= link_to '-', user_word_path(current_user.uid, word), method: :delete
-          / TODO: 編集できるようにする
-        td= word.name
-        td= word.translation
-        td= word.correct_answer_count
-        td= word.question_count
-= link_to 'logout', destroy_user_session_path, method: :delete
+    - if @words.blank?
+      p= '単語を追加してください。'
+
+    .p-add-form-wrapper
+      = form_with url: user_words_path, class: 'c-form p-add-form' do |form|
+        =form.text_field :name, id: :english, required: true, class: 'p-add-form__input--en'
+        =form.submit value: '＋', class: 'p-add-form__submit'
+    .p-words-table-wrapper
+      table.p-words-table
+        thead.p-words-table__thead
+          tr
+            th
+            th 単語
+            th 意味
+        tbody.p-words-table__tbody
+          - @words.each do |word|
+            tr
+              td= link_to '×', user_word_path(current_user.uid, word), method: :delete, remote: true
+              td= word.name
+              td= word.translation

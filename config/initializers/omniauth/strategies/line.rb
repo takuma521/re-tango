@@ -10,7 +10,7 @@ module OmniAuth
           name:        raw_info['displayName'],
           image:       raw_info['pictureUrl'],
           description: raw_info['statusMessage'],
-          email:    JWT.decode(access_token.params['id_token'], Rails.application.credentials.line[:login][:channel_secret]).first['email']
+          email:    JWT.decode(access_token.params['id_token'], Rails.application.credentials[Rails.env.to_sym][:line][:login][:channel_secret]).first['email']
         }
       end
     end

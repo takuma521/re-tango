@@ -284,7 +284,7 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :line, Rails.application.credentials[:line][:login][:key], Rails.application.credentials.line[:login][:channel_secret]
+  config.omniauth :line, Rails.application.credentials[Rails.env.to_sym][:line][:login][:key], Rails.application.credentials[Rails.env.to_sym][:line][:login][:channel_secret]
 
   # ==> Turbolinks configuration
   # If your app is using Turbolinks, Turbolinks::Controller needs to be included to make redirection work correctly:

@@ -8,7 +8,7 @@ class Users::WordsController < ApplicationController
 
   def create
     word = current_user.words.new(name: params[:name], translation: params[:translation])
-    word.translation = Translate.to_japanese(word.name) if word.translation.empty?
+    word.translation = Translate.to_japanese(word.name) if word.translation.blank?
     if word.save
       redirect_to user_words_path
     else

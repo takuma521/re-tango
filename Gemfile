@@ -34,6 +34,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-doc'
+  gem 'scss_lint', require: false
 end
 
 group :development do

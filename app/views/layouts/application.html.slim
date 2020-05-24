@@ -2,10 +2,12 @@ doctype html
 html
   head
     title
-      | MyDecks
+      | Re:Tango
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    = render 'layouts/global_header'
+    main = yield
+    = render 'layouts/global_footer'
