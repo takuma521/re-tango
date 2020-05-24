@@ -1,0 +1,19 @@
+#header {
+  border-bottom: 1rem solid $accent-color;
+  height: 10rem;
+
+  .header__inner {
+    height: 100%;
+    margin: 1rem 1rem 0;
+  }
+
+  .header__title {
+    display: inline-block;
+    font-size: 8rem;
+    margin-top: 1rem;
+  }
+
+  .header__title--accent {
+    color: $accent-color;
+  }
+}

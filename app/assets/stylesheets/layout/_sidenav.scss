@@ -1,0 +1,24 @@
+#sidenav {
+  background: $background-color;
+  flex: 1;
+
+  .sidenav__items {
+    font-size: 3rem;
+    height: 100%;
+    position: relative;
+
+    li {
+      margin: 1rem 0;
+    }
+
+    li:hover {
+      color: $accent-color;
+    }
+
+    li:last-child {
+      bottom: 0;
+      margin-bottom: 5rem;
+      position: absolute;
+    }
+  }
+}
