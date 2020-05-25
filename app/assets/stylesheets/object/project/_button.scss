@@ -1,0 +1,28 @@
+.p-login-button-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.p-login-button {
+  background: $accent-color;
+  color: $light-font-color;
+  font-size: 4rem;
+  height: 10rem;
+  width: 35rem;
+
+  a {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+
+  a:hover {
+    background: $hover-color;
+    transition: .5s;
+  }
+}
