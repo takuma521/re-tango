@@ -2,6 +2,10 @@
   background: $background-color;
   flex: 1;
 
+  @include media(sp) {
+    display: none;
+  }
+
   .sidenav__items {
     font-size: 3rem;
     height: 100%;
