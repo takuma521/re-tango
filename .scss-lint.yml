@@ -1,7 +1,14 @@
 scss_files: 'app/assets/stylesheets/**/*.scss'
+exclude: 'app/assets/stylesheets/foundation/_reset.scss'
 
 linters:
+  QualifyingElement:
+    enabled: false
   IdSelector:
     enabled: false
+  ImportantRule:
+    enabled: false
   SelectorFormat:
+    enabled: false
+  VendorPrefix:
     enabled: false
