@@ -12,41 +12,48 @@
   background: $background-heavy-color;
   color: $light-font-color;
   display: block;
-  font-size: 3rem;
+  font-size: 2.8rem;
+
+  @include media(sp) {
+    font-size: 2rem;
+  }
 
   tr {
-    display: flex;
+    @include flexbox();
     width: 100%;
   }
 
   th {
-    height: 5rem;
-    padding: 1.5rem 0 1rem;
+    padding: 1rem 0;
   }
 
   th:nth-child(1) {
-    flex: 1;
+    @include flex(1);
   }
 
   th:nth-child(2) {
-    flex: 4;
+    @include flex(4);
   }
 
   th:nth-child(3) {
-    flex: 4;
+    @include flex(4);
   }
 }
 
 .p-words-table__tbody {
   background: $background-color;
   display: block;
-  font-size: 3rem;
+  font-size: 2.5rem;
   height: 40rem;
   overflow-x: hidden;
   overflow-y: auto;
 
+  @include media(sp) {
+    font-size: 1.8rem;
+  }
+
   tr {
-    display: flex;
+    @include flexbox();
     width: 100%;
   }
 
@@ -56,14 +63,14 @@
   }
 
   td:nth-child(1) {
-    flex: 1;
+    @include flex(1);
   }
 
   td:nth-child(2) {
-    flex: 4;
+    @include flex(4);
   }
 
   td:nth-child(3) {
-    flex: 4;
+    @include flex(4);
   }
 }

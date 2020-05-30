@@ -3,11 +3,12 @@ html
   head
     title
       | Re:Tango
+    meta[name="viewport" content="width=device-width,initial-scale=1.0"]
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = render 'layouts/global_header'
+    = render 'layouts/global_header' unless request.env['PATH_INFO'] == '/'
     main = yield
-    = render 'layouts/global_footer'
+    = render 'layouts/global_footer' unless request.env['PATH_INFO'] == '/'

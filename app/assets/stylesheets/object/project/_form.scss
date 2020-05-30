@@ -1,20 +1,45 @@
-.p-add-form-wrapper {
+.p-control-bar {
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(center);
   background: $background-color;
-  padding: 3rem 1rem;
+  height: 10rem;
   text-align: center;
 }
 
 .p-add-form {
+  font-size: 3rem;
+  height: 5rem;
   width: 100%;
+  z-index: 1;
+
+  @include media(sp) {
+    font-size: 2rem;
+    height: 4rem;
+  }
+
+  input {
+    background: $light-font-color;
+  }
 }
 
 .p-add-form__input--en {
-  font-size: 3rem;
   width: 60%;
+
+  @include media(sp) {
+    width: 70%;
+  }
 }
 
 .p-add-form__submit {
-  border-radius: 5rem;
-  font-size: 3rem;
-  margin-left: 1rem;
+  background: $light-font-color;
+  border-radius: 50% !important;
+  height: 5rem;
+  margin-left: .5rem;
+  width: 5rem;
+
+  @include media(sp) {
+    height: 4rem;
+    width: 4rem;
+  }
 }

@@ -164,12 +164,12 @@ class LinebotController < ApplicationController
           {
             "type": "uri",
             "label": "ユーザー登録",
-            "uri": "https://#{Settings.domain}/users/auth/line"
+            "uri": "https://#{Settings.domain}"
           },
           {
             "type": "uri",
             "label": "単語登録",
-            "uri": "https://#{Settings.domain}/users/auth/line"
+            "uri": "https://#{Settings.domain}"
           },
           {
             "type": "postback",

@@ -1,19 +1,25 @@
 #header {
   border-bottom: 1rem solid $accent-color;
-  height: 10rem;
+  height: 8rem;
+
 
   .header__inner {
+    @include flexbox();
+    @include align-items(flex-end);
     height: 100%;
     margin: 1rem 1rem 0;
   }
 
   .header__title {
     display: inline-block;
-    font-size: 8rem;
-    margin-top: 1rem;
+    font-size: 5rem;
   }
 
   .header__title--accent {
     color: $accent-color;
+  }
+
+  .header-sp-nav {
+    height: 50rem;
   }
 }

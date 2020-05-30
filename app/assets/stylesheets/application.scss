@@ -1,13 +1,18 @@
 @import 'foundation/variable';
+@import 'foundation/mixin';
+@import 'foundation/reset';
+
 @import 'foundation/base';
 
 @import 'layout/footer';
+@import 'layout/footer-nav';
 @import 'layout/header';
 @import 'layout/main';
 @import 'layout/sidenav';
 
 @import 'object/component/form';
 
+@import 'object/project/button';
 @import 'object/project/form';
 @import 'object/project/table';
 @import 'object/project/words';

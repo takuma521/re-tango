@@ -1,0 +1,41 @@
+#footer-nav {
+  background: $background-heavy-color;
+  bottom: 0;
+  display: inline-block;
+  height: 8rem;
+  position: fixed;
+  width: 100%;
+
+  @include media(pc) {
+    display: none;
+  }
+}
+
+.footer-nav__items {
+  @include flexbox();
+  margin: 1rem;
+
+  li {
+    @include flexbox();
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    color: $light-font-color;
+    margin-left: 1rem;
+  }
+
+  li:last-child {
+    margin: 0 1rem 0 auto;
+  }
+}
+
+.footer-nav__icon {
+  margin: 1rem 0 0 1rem;
+}
+
+.footer-nav__text {
+  font-size: 1rem;
+  margin-top: .3rem;
+  text-align: center;
+}
