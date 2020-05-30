@@ -1,0 +1,19 @@
+nav#footer-nav
+  ul.footer-nav__items
+    li
+      = link_to user_words_path
+        = image_tag('list.png', alt: '', size: '30x30', class: 'footer-nav__icon')
+        .footer-nav__text= '一覧'
+    / TODO: 問題のアイコンの画像
+    / li
+    /   = link_to
+    /     = image_tag('list.png', alt: '', size: '30x30', class: 'footer-nav__icon')
+    /     .footer-nav__text= '問題'
+    / li
+    /   = link_to
+    /     = image_tag('setting.png', alt: '', size: '30x30', class: 'footer-nav__icon')
+    /     .footer-nav__text= '設定'
+    li
+      = link_to destroy_user_session_path, method: :delete
+        = image_tag('logout.png', alt: '', size: '30x30', class: 'footer-nav__icon')
+        .footer-nav__text= 'ログアウト'

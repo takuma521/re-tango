@@ -1,4 +1,8 @@
 #footer {
   border-top: 1rem solid $accent-color;
   height: 10rem;
+
+  @include media(sp) {
+    display: none;
+  }
 }

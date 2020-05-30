@@ -1,4 +1,8 @@
 .p-words-section {
-  flex: 3;
+  @include flex(1);
   padding: 5rem;
+
+  @include media(sp) {
+    padding: 5rem 1rem;
+  }
 }
