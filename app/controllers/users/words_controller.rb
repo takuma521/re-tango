@@ -3,7 +3,7 @@ class Users::WordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @words = current_user.words
+    @words = current_user.words.order(id: 'DESC')
   end
 
   def create

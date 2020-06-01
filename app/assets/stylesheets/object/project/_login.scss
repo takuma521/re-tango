@@ -1,0 +1,79 @@
+.p-login {
+  @include flexbox();
+  @include flex-direction(column);
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  height: 100%;
+  width: 100%;
+
+  @include media(sp) {
+    @include justify-content(normal);
+  }
+}
+
+.p-login__title {
+  font-size: 12rem;
+
+  @include media(sp) {
+    font-size: 5rem;
+    margin-top: 5rem;
+  }
+
+  .p-login__title--accent {
+    color: $accent-color;
+  }
+}
+
+.p-login-button {
+  background: $accent-color;
+  color: $light-font-color;
+  font-size: 4rem;
+  height: 10rem;
+  margin-top: 3rem;
+  text-align: center;
+  width: 35rem;
+
+  @include media(sp) {
+    font-size: 1rem;
+    height: 3rem;
+    width: 12rem;
+  }
+
+  a {
+    @include flexbox();
+    @include justify-content(center);
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  a:hover {
+    background: $hover-color;
+    transition: .5s;
+  }
+}
+
+.p-login__phrase {
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+  animation: fadeIn 2s ease 0s 1 normal;
+  font-size: 4rem;
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+
+  @include media(sp) {
+    font-size: 2rem;
+    margin-top: 2rem;
+    right: 1%;
+    top: 5%;
+  }
+
+  .p-login__phrase--accent {
+    -webkit-animation: fadeIn 6s ease 0s 1 normal;
+    animation: fadeIn 6s ease 0s 1 normal;
+    color: $accent-color;
+  }
+}
