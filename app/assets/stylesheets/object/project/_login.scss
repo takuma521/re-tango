@@ -54,7 +54,9 @@
   }
 }
 
-.p-login__message {
+.p-login__phrase {
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+  animation: fadeIn 2s ease 0s 1 normal;
   font-size: 4rem;
   position: absolute;
   right: 5%;
@@ -69,7 +71,9 @@
     top: 5%;
   }
 
-  .p-login__message--accent {
+  .p-login__phrase--accent {
+    -webkit-animation: fadeIn 6s ease 0s 1 normal;
+    animation: fadeIn 6s ease 0s 1 normal;
     color: $accent-color;
   }
 }
