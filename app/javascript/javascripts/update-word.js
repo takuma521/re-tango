@@ -23,7 +23,6 @@ const updateWord = () => {
       }
 
       document.querySelector('.js-update-word-input').addEventListener('input', () => {
-        // TODO: inputを変更するたびに通信されてしまうので、修正する必要あり
         let formDatas = document.querySelector('.js-update-word-form');
         let postDatas = new FormData(formDatas);
         let XHR = new XMLHttpRequest();
