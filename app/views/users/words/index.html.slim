@@ -25,5 +25,6 @@ section.p-words-section
             tr
               td= link_to '×', user_word_path(current_user.uid, word), method: :delete, remote: true
               td= word.name
-              td= word.translation
+              td.js-update-word data-json=word.id
+                = word.translation
 = render 'layouts/footer-nav'

@@ -1,6 +1,7 @@
 class Users::WordsController < ApplicationController
-  before_action :set_word, only: %w(destroy)
+  before_action :set_word, only: %w(destroy update)
   before_action :authenticate_user!
+  protect_from_forgery :except => [:update]
 
   def index
     @words = current_user.words.order(id: 'DESC')
@@ -21,6 +22,14 @@ class Users::WordsController < ApplicationController
       redirect_to user_words_path
     else
       # TODO: error message 表示
+      redirect_to user_words_path, status: 422
+    end
+  end
+
+  def update
+    if @word.update(translation: params[:translation])
+      redirect_to user_words_path
+    else
       redirect_to user_words_path, status: 422
     end
   end

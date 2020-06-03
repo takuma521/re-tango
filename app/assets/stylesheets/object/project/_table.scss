@@ -72,5 +72,22 @@
 
   td:nth-child(3) {
     @include flex(4);
+    position: relative;
+  }
+
+  td:nth-child(3):hover {
+    background-color: $light-hover-color;
+  }
+
+  td:nth-child(3)::after {
+    content: '✏︎';
+    opacity: 0;
+    position: absolute;
+    right: 3rem;
+    top: 1rem;
+  }
+
+  td:nth-child(3):hover::after {
+    opacity: 1;
   }
 }
