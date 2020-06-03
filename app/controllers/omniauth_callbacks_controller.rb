@@ -22,6 +22,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     end
     flash[:notice] = notice
-    redirect_to user_words_path(@profile)
+    redirect_to user_words_path(@profile.uid)
   end
 end
