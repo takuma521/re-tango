@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   post '/callback' => 'linebot#callback'
 
   get '/agreement', to: 'static_pages#agreement'
+  get '/privacy', to: 'static_pages#privacy'
 
 end
