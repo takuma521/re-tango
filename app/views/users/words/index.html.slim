@@ -11,7 +11,7 @@ section.p-words-section
 
     .p-control-bar
       = form_with url: user_words_path, class: 'c-form p-add-form' do |form|
-        =form.text_field :name, id: :english, required: true, class: 'p-add-form__input--en'
+        =form.text_field :name, id: :english, required: true, class: 'p-add-form__input--en', placeholder: '単語を追加する'
         =form.submit value: '＋', class: 'p-add-form__submit', data: { disable_with: '..' }
     .p-words-table-wrapper
       table.p-words-table
