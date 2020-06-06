@@ -1,8 +1,26 @@
 #footer {
   border-top: 1rem solid $accent-color;
-  height: 10rem;
+  height: 8rem;
 
   @include media(sp) {
-    display: none;
+    height: 14rem;
+  }
+
+  .footer-rule__items {
+    color: $font-color;
+    margin: 1rem;
+    text-align: right;
+
+    li {
+      display: inline;
+      margin-right: 1rem;
+    }
+  }
+
+  .footer-rule__item {
+
+    :hover {
+      color: $hover-color;
+    }
   }
 }

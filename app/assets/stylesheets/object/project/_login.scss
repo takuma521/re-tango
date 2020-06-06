@@ -4,7 +4,7 @@
   @include flex-wrap(wrap);
   @include justify-content(center);
   @include align-items(center);
-  height: 100%;
+  height: 84rem;
   width: 100%;
 
   @include media(sp) {
@@ -67,7 +67,7 @@
   @include media(sp) {
     font-size: 2rem;
     margin-top: 2rem;
-    right: 1%;
+    right: 5%;
     top: 5%;
   }
 

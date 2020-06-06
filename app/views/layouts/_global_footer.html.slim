@@ -1,7 +1,9 @@
 footer#footer
   .footer__inner
-    ul
-      li
+    ul.footer-rule__items
+      li.footer-rule__item
         = link_to '利用規約', agreement_path
+      li
         | /
+      li.footer-rule__item
         = link_to 'privacy policy', privacy_path
