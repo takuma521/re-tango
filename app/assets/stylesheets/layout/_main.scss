@@ -1,9 +1,5 @@
 main {
   @include flexbox();
-  height: 75rem;
+  height: 100%;
   width: 100%;
-
-  @include media(sp) {
-    height: 100%;
-  }
 }
