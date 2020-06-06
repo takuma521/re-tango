@@ -12,3 +12,4 @@ html
     = render 'layouts/global_header' unless request.env['PATH_INFO'] == '/'
     main = yield
     = render 'layouts/global_footer' unless request.env['PATH_INFO'] == '/'
+    = render 'layouts/footer-nav' unless request.env['PATH_INFO'] == '/'
