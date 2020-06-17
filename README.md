@@ -2,12 +2,13 @@ Re:Tango
 ====
 
 ## Overview
+
 単語を登録しチャットで出題してくれるサービスです。
 
 [Re:Tango](https://retango.tokyo)
 
-![](./app/assets/images/qrcode.png)
 ![](./app/assets/images/ram.jpg)
+![](./app/assets/images/qrcode.png)
 
 ## Description
 
@@ -23,11 +24,9 @@ Re:Tango
 
 ## Demo
 
-# Features
+## Features
 
-"hoge"のセールスポイントや差別化などを説明する
-
-# Requirement
+## Requirement
 
 * ruby 2.6.3
 * rails 6.0.2.1
