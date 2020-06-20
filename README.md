@@ -41,3 +41,4 @@ Re:Tango
 
 * ruby 2.6.3
 * rails 6.0.2.1
+* mysql  8.0.19
