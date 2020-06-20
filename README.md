@@ -7,8 +7,8 @@ Re:Tango
 
 [Re:Tango](https://retango.tokyo)
 
-![](./app/assets/images/ram.jpg)
-![](./app/assets/images/qrcode.png)
+<img src="./app/assets/images/ram.jpg" width="200px">
+<img src="./app/assets/images/qrcode.png" width="200px">
 
 ## Target
 
@@ -33,6 +33,8 @@ Re:Tango
 - Google chromeの拡張機能を使用し単語を登録できるようにする
 
 ## Demo
+
+[![Image from Gyazo](https://i.gyazo.com/424ddc15aa5b21eff85368ef70552b87.gif)](https://gyazo.com/424ddc15aa5b21eff85368ef70552b87)
 
 ## Features
 
