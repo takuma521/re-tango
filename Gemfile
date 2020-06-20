@@ -18,6 +18,7 @@ gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'webpacker', '~> 4.0'
+gem 'whenever', require: false
 
 group :production, :staging do
   gem 'unicorn'
