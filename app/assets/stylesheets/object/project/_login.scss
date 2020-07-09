@@ -4,7 +4,7 @@
   @include flex-wrap(wrap);
   @include justify-content(center);
   @include align-items(center);
-  height: 84rem;
+  height: 250rem;
   width: 100%;
 
   @include media(sp) {
@@ -20,7 +20,7 @@
     margin-top: 5rem;
   }
 
-  .p-login__title--accent {
+  .p-service {
     color: $accent-color;
   }
 }
@@ -76,4 +76,40 @@
     animation: fadeIn 6s ease 0s 1 normal;
     color: $accent-color;
   }
+}
+
+.p-login__service {
+  margin-top: 10rem;
+}
+
+.p-login__service-title {
+  font-size: 4rem;
+  text-align: center;
+
+  @include media(sp) {
+    font-size: 2.8rem;
+    margin-top: 10rem;
+  }
+}
+
+.p-login__service-explanation {
+  font-size: 2.5rem;
+  margin-top: 3rem;
+
+  @include media(sp) {
+    font-size: 1.5rem;
+    margin-left: .5rem;
+  }
+}
+
+.p-login__service__img-wrapper {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  margin: 1rem 0;
+}
+
+.p-login__service__img {
+  margin-top: 1rem;
 }
