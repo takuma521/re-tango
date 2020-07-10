@@ -22,8 +22,16 @@
       | ② ユーザー登録からLINEログインし単語を追加してください。
     .p-login__service__img-wrapper
       = image_tag('add_user.jpg', size: '300x250', alt: '', class: '.p-login__service__img')
-      = image_tag('add_word.jpg', size: '300x500', alt: '', class: '.p-login__service__img')
+      = image_tag('add_word.jpg', size: '300x520', alt: '', class: '.p-login__service__img')
     .p-login__service-explanation
       | ③ 問題を解きましょう！
     .p-login__service__img-wrapper
-      = image_tag('solve_question.jpg', size: '300x320', alt: '', class: '.p-login__service__img')
+      = image_tag('solve_question.jpg', size: '300x500', alt: '', class: '.p-login__service__img')
+    .p-login__service-title
+      | 登録解除方法
+    .p-login__service-explanation
+      | LINEでブロックを解除すると登録が解除されます。
+      br
+      | ※登録を解除すると今まで登録した単語が全て削除され復元できません。
+    .p-login__service__img-wrapper
+      = image_tag('delete_user.jpg', alt: '', size: '300x400', class: '.p-login__service__img')
