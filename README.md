@@ -5,6 +5,8 @@ Re:Tango
 
 単語を登録しチャットで出題してくれるサービスです。
 
+※現在サービスは停止しております。
+
 [Re:Tango](https://retango.tokyo)
 
 <img src="./app/assets/images/ram.jpg" width="200px"> <img src="./app/assets/images/qrcode.png" width="200px">
